@@ -12,7 +12,7 @@ var PostConstants = require('../Constants/Post');
 var { dispatch, handleResponse } = require('flux-util').apiHelpersFor(dispatcher);
 var ApiConstants = require('../Constants/Api');
 
-var mainURL = 'http://127.0.0.1:3000';
+var mainURL = 'http://skam.club';
 
 var postData = function(params) {
   return {
@@ -22,6 +22,16 @@ var postData = function(params) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(params)
+  }
+};
+
+var getData = function() {
+  return {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   }
 };
 
@@ -77,7 +87,7 @@ module.exports = {
 
     dispatch(PostConstants.FEED, ApiConstants.PENDING, params);
 
-    fetch(url)
+    fetch(url, getData())
       .then(handleResponse(PostConstants.FEED))
       .catch(err => {
         AlertIOS.alert(
