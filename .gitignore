@@ -1,0 +1,5 @@
+.DS_Store
+node_modules
+npm-debug.log
+ios/skam.xcodeproj/xcuserdata
+ios/skam.xcodeproj/project.xcworkspace/xcuserdata

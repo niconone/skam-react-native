@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                    <rect key="frame" x="20" y="439" width="441" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="F9I-th-3xl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skam-launch" translatesAutoresizingMaskIntoConstraints="NO" id="kDo-J4-cNM">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="701"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="701" id="qUb-0j-GXE"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="skam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUp-Df-VOa">
+                    <rect key="frame" x="195" y="171" width="91" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="VJc-mo-jw2"/>
+                        <constraint firstAttribute="width" constant="91" id="ZGJ-xq-7eU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="38"/>
+                    <color key="textColor" red="0.16123993345820703" green="0.79519958792809997" blue="0.79573074494949492" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="2" height="1"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bUp-Df-VOa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="171" id="EUX-VJ-8fT"/>
+                <constraint firstItem="kDo-J4-cNM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Mwc-1w-k8B"/>
+                <constraint firstItem="kDo-J4-cNM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="R5J-ZD-efp"/>
+                <constraint firstItem="bUp-Df-VOa" firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="b7m-Ih-Ccu"/>
+                <constraint firstAttribute="trailing" secondItem="kDo-J4-cNM" secondAttribute="trailing" id="cp7-Sd-fI1"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="dwH-cb-eVm"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="g3x-zG-n3a"/>
+                <constraint firstItem="kDo-J4-cNM" firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="zgo-9A-72J"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="skam-launch" width="621" height="1104"/>
+    </resources>
+</document>
