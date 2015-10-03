@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var Image = React.Image;
+var dismissKeyboard = require('dismissKeyboard');
 var UIImagePickerManager = require('NativeModules').UIImagePickerManager;
 var {
   StyleSheet,
@@ -59,6 +60,8 @@ var Add = React.createClass({
   },
 
   onBackground: function() {
+    dismissKeyboard();
+
     var options = {
       title: 'Select Background',
       cancelButtonTitle: 'Cancel',

@@ -22,7 +22,7 @@ var UserActions = require('../Actions/UserActions');
 var PostStoreSync = require('../Mixins/PostStoreSync');
 
 var styles = require('../Styles/Styles');
-var mainURL = 'http://127.0.0.1:3000';
+var mainURL = 'http://skam.club';
 
 StatusBarIOS.setStyle('light-content', true);
 
@@ -142,7 +142,6 @@ var Dashboard = React.createClass({
       var postActions;
 
       this.state.posts.map((postObj, idx) => {
-
         var post = postObj.get('value');
         postActions = (
           <View style={styles.actions} key={post.get('pid')}>

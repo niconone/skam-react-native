@@ -103,7 +103,10 @@ module.exports = {
     dispatch(PostConstants.ADD, ApiConstants.PENDING, params);
 
     fetch(url, postData(params))
-      .then(handleResponse(PostConstants.ADD, params));
+      .then(handleResponse(PostConstants.ADD, params))
+      .catch(err => {
+        console.log(err);
+      });
   },
 
   postDelete(params) {
