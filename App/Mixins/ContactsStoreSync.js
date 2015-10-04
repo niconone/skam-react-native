@@ -6,7 +6,6 @@ module.exports = {
   },
 
   updateUserFromStore() {
-    // TODO: fix to support multiple contacts
     this.setState({contact: ContactStore.getState()});
     if (this.afterUpdateContactFromStore) {
       this.afterUpdateContactFromStore();

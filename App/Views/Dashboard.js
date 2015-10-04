@@ -124,7 +124,7 @@ var Dashboard = React.createClass({
   render: function() {
     var postList;
 
-    if (!this.state.posts.size) {
+    if (!this.state.posts || (this.state.posts && !this.state.posts.size)) {
       postList = (
         <View style={styles.postWrapper}>
           <View style={styles.container}>

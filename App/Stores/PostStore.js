@@ -25,7 +25,7 @@ var store = createStore({
 
     switch(action.actionType) {
       case PostConstants.ADD:
-        _posts = _posts.push(Immutable.fromJS(action.response));
+        _posts.push(Immutable.fromJS(action.response));
         store.emitChange(action);
         break;
       case PostConstants.FEED:

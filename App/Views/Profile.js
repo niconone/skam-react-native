@@ -92,7 +92,7 @@ var Profile = React.createClass({
   render: function() {
     var avatar;
 
-    if (this.state.avatar.uri || this.state.avatar.get('uri')) {
+    if (!!this.state.avatar && (this.state.avatar.uri || this.state.avatar.get)) {
       avatar = (
         <Image source={{uri: this.state.avatar.uri || this.state.avatar.get('uri')}} style={styles.avatar} />
       )

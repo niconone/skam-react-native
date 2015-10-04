@@ -77,7 +77,7 @@ module.exports = {
     var url = mainURL + '/contact/add';
 
     dispatch(ContactConstants.ADD, ApiConstants.PENDING, params);
-
+    console.log('adding contact ', params)
     fetch(url, postData(params))
       .then(handleResponse(ContactConstants.ADD, params))
       .catch(err => {

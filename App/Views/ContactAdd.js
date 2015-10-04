@@ -32,7 +32,7 @@ var Add = React.createClass({
         'Number cannot be empty'
       );
     } else {
-      UserActions.postAdd({
+      UserActions.contactAdd({
         id: user.get('id'),
         name: user.get('name') || '?',
         avatar: user.get('avatar') || '',
