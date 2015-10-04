@@ -12,8 +12,7 @@ var {
   TouchableHighlight,
   NativeModules: {
     UIImagePickerManager
-  },
-  StatusBarIOS
+  }
 } = React;
 
 var UserStoreSync = require('../Mixins/UserStoreSync');
@@ -21,8 +20,6 @@ var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
 
 var styles = require('../Styles/Styles');
-
-StatusBarIOS.setStyle('light-content', true);
 
 var Profile = React.createClass({
   mixins: [UserStoreSync],

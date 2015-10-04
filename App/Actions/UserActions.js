@@ -79,7 +79,13 @@ module.exports = {
     dispatch(ContactConstants.ADD, ApiConstants.PENDING, params);
 
     fetch(url, postData(params))
-      .then(handleResponse(ContactConstants.ADD, params));
+      .then(handleResponse(ContactConstants.ADD, params))
+      .catch(err => {
+        AlertIOS.alert(
+          'Contact error',
+          'Could not add contact'
+        );
+      });
   },
 
   postFeed(params) {

@@ -7,8 +7,7 @@ var {
   Text,
   TextInput,
   View,
-  TouchableHighlight,
-  StatusBarIOS
+  TouchableHighlight
 } = React;
 
 var dispatcher = require('../AppDispatcher');
@@ -18,8 +17,6 @@ var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 
 var styles = require('../Styles/Styles');
-
-StatusBarIOS.setStyle('light-content', true);
 
 var VerifyPin = React.createClass({
   mixins: [UserStoreSync],
@@ -40,9 +37,11 @@ var VerifyPin = React.createClass({
   afterUpdateUserFromStore() {
     var user = UserStore.getState();
 
-    if (user.get('id')) {
-      this.props.navigator.replace({id: 'dashboard'});
-    }
+    setImmediate(() => {
+      if (user.get('id')) {
+        this.props.navigator.replace({id: 'dashboard'});
+      }
+    });
   },
 
   render: function() {

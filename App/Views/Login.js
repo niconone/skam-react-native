@@ -7,8 +7,7 @@ var {
   Text,
   TextInput,
   View,
-  TouchableHighlight,
-  StatusBarIOS
+  TouchableHighlight
 } = React;
 
 var UserActions = require('../Actions/UserActions');
@@ -16,8 +15,6 @@ var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 
 var styles = require('../Styles/Styles');
-
-StatusBarIOS.setStyle('light-content', true);
 
 var Login = React.createClass({
   mixins: [UserStoreSync],
@@ -64,7 +61,8 @@ var Login = React.createClass({
           <Text style={styles.label}>
             Sign in with your phone number
           </Text>
-          <TextInput keyboardType='phone-pad' style={styles.inputText}
+          <TextInput keyboardType='phone-pad'
+                     style={styles.inputText}
                      onChangeText={(text) => this.setState({text})}
                      value={this.props.text} />
           <TouchableHighlight onPress={this.onPress}>

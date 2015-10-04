@@ -8,8 +8,7 @@ var {
   TextInput,
   View,
   Navigator,
-  TouchableHighlight,
-  StatusBarIOS
+  TouchableHighlight
 } = React;
 
 var UserStoreSync = require('../Mixins/UserStoreSync');
@@ -18,20 +17,19 @@ var UserActions = require('../Actions/UserActions');
 
 var styles = require('../Styles/Styles');
 
-StatusBarIOS.setStyle('light-content', true);
-
 var Menu = React.createClass({
   mixins: [UserStoreSync],
 
   onCancel: function() {
-    console.log('got here')
     this.props.navigator.replace({
       id: 'dashboard'
     });
   },
 
   onAddUser: function() {
-
+    this.props.navigator.replace({
+      id: 'contactAdd'
+    });
   },
 
   onProfile: function() {
@@ -77,7 +75,7 @@ var Menu = React.createClass({
           </TouchableHighlight>
           <TouchableHighlight onPress={this.onSignout}>
             <Text style={[styles.buttonShared, styles.buttonWarn]}>
-              Exit
+              Sign out
             </Text>
           </TouchableHighlight>
         </View>

@@ -14,8 +14,7 @@ var {
   ScrollView,
   NativeModules: {
     UIImagePickerManager
-  },
-  StatusBarIOS
+  }
 } = React;
 
 var UserStoreSync = require('../Mixins/UserStoreSync');
@@ -23,8 +22,6 @@ var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
 
 var styles = require('../Styles/Styles');
-
-StatusBarIOS.setStyle('light-content', true);
 
 var Add = React.createClass({
   mixins: [UserStoreSync],

@@ -6,13 +6,10 @@ var {
   StyleSheet,
   Text,
   TextInput,
-  View,
-  StatusBarIOS
+  View
 } = React;
 
 var styles = require('../Styles/Styles');
-
-StatusBarIOS.setStyle('light-content', true);
 
 var Stub = React.createClass({
   render: function() {

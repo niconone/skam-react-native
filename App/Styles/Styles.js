@@ -86,7 +86,7 @@ var styles = StyleSheet.create({
   },
   buttonWarn: {
     backgroundColor: 'rgba(255, 15, 55, 0.7)',
-    marginTop: 13,
+    marginTop: 70,
   },
   actions: {
     position: 'absolute',

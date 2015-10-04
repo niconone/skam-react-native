@@ -5,6 +5,7 @@ var Image = React.Image;
 var {
   AppRegistry,
   Navigator,
+  StatusBarIOS,
 } = React;
 
 var UserLocalStorage = require('./App/Stores/UserLocalStorage');
@@ -15,6 +16,9 @@ var Dashboard = require('./App/Views/Dashboard');
 var PostAdd = require('./App/Views/PostAdd');
 var Menu = require('./App/Views/Menu');
 var Profile = require('./App/Views/Profile');
+var ContactAdd = require('./App/Views/ContactAdd');
+
+StatusBarIOS.setStyle('light-content', true);
 
 var skam = React.createClass({
   getInitialState() {
@@ -37,6 +41,8 @@ var skam = React.createClass({
         return <PostAdd navigator={nav} />;
       case 'profileUpdate':
         return <Profile navigator={nav} />;
+      case 'contactAdd':
+        return <ContactAdd navigator={nav} />;
       case 'menu':
         return <Menu navigator={nav} />;
       default:

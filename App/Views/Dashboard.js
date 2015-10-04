@@ -11,9 +11,7 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   WebView,
-  ScrollView,
-  StatusBarIOS,
-  AlertIOS
+  ScrollView
 } = React;
 
 var UserStoreSync = require('../Mixins/UserStoreSync');
@@ -23,8 +21,6 @@ var PostStoreSync = require('../Mixins/PostStoreSync');
 
 var styles = require('../Styles/Styles');
 var mainURL = 'http://skam.club';
-
-StatusBarIOS.setStyle('light-content', true);
 
 var Dashboard = React.createClass({
   mixins: [UserStoreSync, PostStoreSync],
