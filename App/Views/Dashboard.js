@@ -29,7 +29,8 @@ var Dashboard = React.createClass({
       topInset: 0,
       backgroundSource: require('image!skam-launch'),
       hide: true,
-      remove: false
+      remove: false,
+      feedType: 'dashboard'
     };
   },
 

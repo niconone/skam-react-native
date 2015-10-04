@@ -99,11 +99,7 @@ var Menu = React.createClass({
         <View style={styles.toolbar}>
           {this.state.menuCancelDashboard}
           {this.state.menuHeader}
-          <View>
-            <Text style={[styles.textActionShared, styles.textAction]}>
-
-            </Text>
-          </View>
+          {this.state.menuEmpty}
         </View>
       </View>
     );

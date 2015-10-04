@@ -22,7 +22,7 @@ module.exports = {
       menuCancelMenu: (
         <TouchableHighlight onPress={this.onPressCancelMenu}>
           <Text style={[styles.textActionShared, styles.textAction]}>
-            Cancel
+            Back
           </Text>
         </TouchableHighlight>
       ),
@@ -41,6 +41,14 @@ module.exports = {
             ⋯
           </Text>
         </TouchableHighlight>
+      ),
+
+      menuEmpty: (
+        <View>
+          <Text style={[styles.textActionShared, styles.textAction]}>
+
+          </Text>
+        </View>
       )
     }
   },

@@ -10,40 +10,28 @@ var {
   Navigator,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  WebView,
   ScrollView
 } = React;
 
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
-var PostStoreSync = require('../Mixins/PostStoreSync');
 var Shared = require('../Mixins/Shared');
+var Feed = require('../Mixins/Feed');
 
 var styles = require('../Styles/Styles');
 
 var Dashboard = React.createClass({
-  mixins: [UserStoreSync, PostStoreSync, Shared],
-
-  _refreshFeed: function() {
-    var user = UserStore.getState();
-
-    UserActions.postFeed({
-      uid: user.get('id')
-    });
-  },
+  mixins: [UserStoreSync, Shared, Feed],
 
   getInitialState: function() {
     return {
       topInset: 0,
       backgroundSource: require('image!skam-launch'),
       hide: true,
-      remove: false
+      remove: false,
+      feedType: 'network'
     };
-  },
-
-  componentWillMount: function() {
-    this.refreshContacts();
   },
 
   handleScroll: function(e) {
@@ -75,7 +63,6 @@ var Dashboard = React.createClass({
     }
   },
 
-
   showRefreshActivity() {
     if (!this.state.hide) {
       return (
@@ -97,13 +84,13 @@ var Dashboard = React.createClass({
             onScroll={this.handleScroll}
             scrollEventThrottle={1}
             contentOffset={{y: -this.state.topInset}}>
-            {postList}
+            {this.showFeed(true)}
             {this.showRefreshActivity()}
           </ScrollView>
           <View style={styles.toolbar}>
             {this.state.menuCancelMenu}
             {this.state.menuHeader}
-            {this.state.menuMore}
+            {this.state.menuEmpty}
           </View>
         </View>
       </View>

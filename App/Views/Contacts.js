@@ -145,7 +145,7 @@ var Dashboard = React.createClass({
           <View style={styles.toolbar}>
             {this.state.menuCancelMenu}
             {this.state.menuHeader}
-            {this.state.menuMore}
+            {this.state.menuEmpty}
           </View>
         </View>
       </View>

@@ -21,9 +21,15 @@ module.exports = {
   refreshFeed: function() {
     var user = UserStore.getState();
 
-    UserActions.postFeed({
-      uid: user.get('id')
-    });
+    if (this.state.feedType == 'network') {
+      UserActions.networkFeed({
+        uid: user.get('id')
+      });
+    } else {
+      UserActions.postFeed({
+        uid: user.get('id')
+      });
+    }
   },
 
   componentWillMount: function() {
@@ -32,6 +38,10 @@ module.exports = {
 
   _onPressRemove: function(idx, pid) {
     var user = UserStore.getState();
+
+    if (this.state.feedType == 'network') {
+      return;
+    }
 
     UserActions.postDelete({
       id: user.get('id'),
@@ -72,7 +82,7 @@ module.exports = {
         var post = postObj.get('value');
         var actions;
 
-        if (owner) {
+        if (this.state.feedType != 'network') {
           postActions = (
             <View style={styles.actions} key={post.get('pid')}>
               <TouchableHighlight onPress={() => this._onPressRemove(idx, post.get('pid'))}>
