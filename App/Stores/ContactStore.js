@@ -5,15 +5,15 @@ var ApiConstants = require('../Constants/Api');
 var ContactConstants = require('../Constants/Contact');
 var merge = require('merge');
 
-var _contact = Immutable.Map();
+var _contacts = Immutable.Map();
 
 var store = createStore({
-  setState(contact) {
-    _contact = Immutable.fromJS(contact || {});
+  setState(contacts) {
+    _contacts = Immutable.fromJS(contacts || {});
   },
 
   getState() {
-    return _contact;
+    return _contacts;
   },
 
   dispatcherIndex: dispatcher.register(function(payload) {
@@ -25,27 +25,31 @@ var store = createStore({
 
     switch(action.actionType) {
       case ContactConstants.ADD:
-        _contact = Immutable.fromJS(merge(action.response, action.queryParams));
+        _contacts.push(Immutable.fromJS(action.queryParams));
+        store.emitChange(action);
+        break;
+      case ContactConstants.NETWORK:
+        _contacts = Immutable.fromJS(action.response.users);
         store.emitChange(action);
         break;
       case ContactConstants.VOUCH:
-        _contact = Immutable.Map();
+        //_contacts = Immutable.Map();
         store.emitChange(action);
         break;
       case ContactConstants.UNVOUCH:
-        _contact = Immutable.Map();
+        //_contacts = Immutable.Map();
         store.emitChange(action);
         break;
       case ContactConstants.REMOVE:
-        _contact = Immutable.Map();
+        //_contacts = Immutable.Map();
         store.emitChange(action);
         break;
       case ContactConstants.BAN:
-        _contact = Immutable.Map();
+        //_contacts = Immutable.Map();
         store.emitChange(action);
         break;
       case ContactConstants.UNBAN:
-        _contact = Immutable.Map();
+        //_contacts = Immutable.Map();
         store.emitChange(action);
         break;
     }

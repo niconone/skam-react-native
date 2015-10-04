@@ -17,15 +17,16 @@ var {
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
+var Shared = require('../Mixins/Shared');
 
 var styles = require('../Styles/Styles');
 
 var Add = React.createClass({
-  mixins: [UserStoreSync],
+  mixins: [UserStoreSync, Shared],
 
   onPressSave: function() {
     var user = UserStore.getState();
-    console.log('saving contact');
+
     if (!this.state.phone || !this.state.phone.match(/^[0-9\+]/)) {
       AlertIOS.alert(
         'Invalid number',
@@ -46,12 +47,6 @@ var Add = React.createClass({
     }
   },
 
-  onPressCancel: function() {
-    this.props.navigator.replace({
-      id: 'menu'
-    });
-  },
-
   afterUpdateUserFromStore() {
     var user = UserStore.getState();
 
@@ -70,7 +65,7 @@ var Add = React.createClass({
         </View>
         <View style={styles.form}>
           <Text style={styles.label}>
-            Enter phone number
+            Enter the phone number of the contact you are sharing videos with.
           </Text>
           <TextInput keyboardType='phone-pad'
                      style={styles.inputText}
@@ -78,14 +73,8 @@ var Add = React.createClass({
                      value={this.props.phone} />
         </View>
         <View style={styles.toolbar}>
-          <TouchableHighlight onPress={this.onPressCancel}>
-            <Text style={[styles.textActionShared, styles.textAction]}>
-              Cancel
-            </Text>
-          </TouchableHighlight>
-          <Text style={styles.header}>
-            SKAM
-          </Text>
+          {this.state.menuCancelMenu}
+          {this.state.menuHeader}
           <TouchableHighlight onPress={this.onPressSave}>
             <Text style={[styles.textActionShared, styles.textActionRight]}>
               Add

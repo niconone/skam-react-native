@@ -10,19 +10,28 @@ var {
   Navigator,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  WebView,
   ScrollView
 } = React;
 
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
+var PostStoreSync = require('../Mixins/PostStoreSync');
 var Shared = require('../Mixins/Shared');
-var Feed = require('../Mixins/Feed');
 
 var styles = require('../Styles/Styles');
 
 var Dashboard = React.createClass({
-  mixins: [UserStoreSync, Shared, Feed],
+  mixins: [UserStoreSync, PostStoreSync, Shared],
+
+  _refreshFeed: function() {
+    var user = UserStore.getState();
+
+    UserActions.postFeed({
+      uid: user.get('id')
+    });
+  },
 
   getInitialState: function() {
     return {
@@ -31,6 +40,10 @@ var Dashboard = React.createClass({
       hide: true,
       remove: false
     };
+  },
+
+  componentWillMount: function() {
+    this.refreshContacts();
   },
 
   handleScroll: function(e) {
@@ -52,12 +65,6 @@ var Dashboard = React.createClass({
     }, 500);
   },
 
-  onAddNew: function() {
-    this.props.navigator.replace({
-      id: 'postAdd'
-    });
-  },
-
   afterUpdateUserFromStore() {
     var user = UserStore.getState();
 
@@ -67,6 +74,7 @@ var Dashboard = React.createClass({
       });
     }
   },
+
 
   showRefreshActivity() {
     if (!this.state.hide) {
@@ -89,15 +97,11 @@ var Dashboard = React.createClass({
             onScroll={this.handleScroll}
             scrollEventThrottle={1}
             contentOffset={{y: -this.state.topInset}}>
-            {this.showFeed(true)}
+            {postList}
             {this.showRefreshActivity()}
           </ScrollView>
           <View style={styles.toolbar}>
-            <TouchableHighlight onPress={this.onAddNew}>
-              <Text style={[styles.textActionShared, styles.textActionLarge]}>
-                +
-              </Text>
-            </TouchableHighlight>
+            {this.state.menuCancelMenu}
             {this.state.menuHeader}
             {this.state.menuMore}
           </View>

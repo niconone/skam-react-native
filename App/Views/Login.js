@@ -13,11 +13,12 @@ var {
 var UserActions = require('../Actions/UserActions');
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
+var Shared = require('../Mixins/Shared');
 
 var styles = require('../Styles/Styles');
 
 var Login = React.createClass({
-  mixins: [UserStoreSync],
+  mixins: [UserStoreSync, Shared],
 
   onPress: function() {
     if (!this.state.text || !this.state.text.match(/^[0-9\+]/)) {
@@ -53,9 +54,7 @@ var Login = React.createClass({
           <Image source={require('image!skam-launch')} style={styles.wallpaper} />
         </View>
         <View style={styles.toolbar}>
-          <Text style={styles.header}>
-            SKAM
-          </Text>
+          {this.state.menuHeader}
         </View>
         <View style={styles.form}>
           <Text style={styles.label}>

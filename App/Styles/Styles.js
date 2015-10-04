@@ -219,6 +219,10 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgba(15, 255, 156, 0.5)',
     flex: 1,
     paddingLeft: 10,
+    paddingTop: 25,
+  },
+  contacts: {
+    marginTop: 60,
   }
 });
 

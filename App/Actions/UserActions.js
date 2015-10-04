@@ -36,14 +36,14 @@ var getData = function() {
 };
 
 module.exports = {
-  newSession(params) {
+  newSession: function(params) {
     var url = mainURL + '/authenticate';
 
     fetch(url, postData(params))
       .then(handleResponse(UserConstants.SIGN_IN, params));
   },
 
-  verifyPin(params) {
+  verifyPin: function(params) {
     var url = mainURL + '/verify';
 
     dispatch(UserConstants.SIGN_IN, ApiConstants.PENDING, params);
@@ -58,7 +58,7 @@ module.exports = {
       });
   },
 
-  profileUpdate(params) {
+  profileUpdate: function(params) {
     var url = mainURL + '/profile';
 
     dispatch(UserConstants.PROFILE, ApiConstants.PENDING, params);
@@ -66,6 +66,7 @@ module.exports = {
     fetch(url, postData(params))
       .then(handleResponse(UserConstants.PROFILE, params))
       .catch(err => {
+        //this.signOut();
         AlertIOS.alert(
           'Profile error',
           'Could not update profile'
@@ -73,7 +74,7 @@ module.exports = {
       });
   },
 
-  contactAdd(params) {
+  contactAdd: function(params) {
     var url = mainURL + '/contact/add';
 
     dispatch(ContactConstants.ADD, ApiConstants.PENDING, params);
@@ -88,7 +89,37 @@ module.exports = {
       });
   },
 
-  postFeed(params) {
+  trustedNetwork: function(params) {
+    var url = mainURL + '/contacts/trustnetwork';
+
+    dispatch(ContactConstants.NETWORK, ApiConstants.PENDING, params);
+    console.log('getting contacts ', params)
+    fetch(url, postData(params))
+      .then(handleResponse(ContactConstants.NETWORK, params))
+      .catch(err => {
+        AlertIOS.alert(
+          'Contact error',
+          'Could not retrieve trusted network'
+        );
+      });
+  },
+
+  networkFeed: function(params) {
+    var url = mainURL + '/posts/network';
+
+    dispatch(PostConstants.FEED, ApiConstants.PENDING, params);
+
+    fetch(url, postData(params))
+      .then(handleResponse(PostConstants.FEED))
+      .catch(err => {
+        AlertIOS.alert(
+          'Post error',
+          'Could not retrieve posts from network'
+        );
+      });
+  },
+
+  postFeed: function(params) {
     var url = mainURL + '/feed/' + params.uid;
 
     dispatch(PostConstants.FEED, ApiConstants.PENDING, params);
@@ -103,7 +134,7 @@ module.exports = {
       });
   },
 
-  postAdd(params) {
+  postAdd: function(params) {
     var url = mainURL + '/post/add';
 
     dispatch(PostConstants.ADD, ApiConstants.PENDING, params);
@@ -115,7 +146,7 @@ module.exports = {
       });
   },
 
-  postDelete(params) {
+  postDelete: function(params) {
     var url = mainURL + '/post/delete';
 
     fetch(url, postData(params))
@@ -127,7 +158,7 @@ module.exports = {
       });
   },
 
-  signOut() {
+  signOut: function() {
     dispatcher.handleViewAction({
       actionType: UserConstants.SIGN_OUT,
     });

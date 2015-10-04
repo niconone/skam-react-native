@@ -18,11 +18,12 @@ var {
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
+var Shared = require('../Mixins/Shared');
 
 var styles = require('../Styles/Styles');
 
 var Profile = React.createClass({
-  mixins: [UserStoreSync],
+  mixins: [UserStoreSync, Shared],
 
   getInitialState: function() {
     var user = UserStore.getState();
@@ -43,12 +44,6 @@ var Profile = React.createClass({
       avatar: this.state.avatar
     });
 
-    this.props.navigator.replace({
-      id: 'dashboard'
-    });
-  },
-
-  onPressCancel: function() {
     this.props.navigator.replace({
       id: 'dashboard'
     });
@@ -124,14 +119,8 @@ var Profile = React.createClass({
                      value={this.state.name} />
         </View>
         <View style={styles.toolbar}>
-          <TouchableHighlight onPress={this.onPressCancel}>
-            <Text style={[styles.textActionShared, styles.textAction]}>
-              Cancel
-            </Text>
-          </TouchableHighlight>
-          <Text style={styles.header}>
-            SKAM
-          </Text>
+          {this.state.menuCancelDashboard}
+          {this.state.menuHeader}
           <TouchableHighlight onPress={this.onPressSave}>
             <Text style={[styles.textActionShared, styles.textActionRight]}>
               Update

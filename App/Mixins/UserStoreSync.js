@@ -1,23 +1,23 @@
 var UserStore = require('../Stores/UserStore');
 
 module.exports = {
-  getInitialState() {
+  getInitialState: function() {
     return {user: UserStore.getState()}
   },
 
-  updateUserFromStore() {
+  updateUserFromStore: function() {
     this.setState({user: UserStore.getState()});
     if (this.afterUpdateUserFromStore) {
       this.afterUpdateUserFromStore();
     }
   },
 
-  componentDidMount() {
+  componentDidMount: function() {
     this.updateUserFromStore();
     UserStore.addChangeListener(this.updateUserFromStore);
   },
 
-  componentWillUnmount() {
+  componentWillUnmount: function() {
     UserStore.removeChangeListener(this.updateUserFromStore);
-  },
+  }
 };

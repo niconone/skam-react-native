@@ -17,6 +17,7 @@ var PostAdd = require('./App/Views/PostAdd');
 var Menu = require('./App/Views/Menu');
 var Profile = require('./App/Views/Profile');
 var ContactAdd = require('./App/Views/ContactAdd');
+var Contacts = require('./App/Views/Contacts');
 
 StatusBarIOS.setStyle('light-content', true);
 
@@ -43,6 +44,8 @@ var skam = React.createClass({
         return <Profile navigator={nav} />;
       case 'contactAdd':
         return <ContactAdd navigator={nav} />;
+      case 'contacts':
+        return <Contacts navigator={nav} />;
       case 'menu':
         return <Menu navigator={nav} />;
       default:

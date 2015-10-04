@@ -20,11 +20,12 @@ var {
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
+var Shared = require('../Mixins/Shared');
 
 var styles = require('../Styles/Styles');
 
 var Add = React.createClass({
-  mixins: [UserStoreSync],
+  mixins: [UserStoreSync, Shared],
 
   getInitialState: function() {
     return {
@@ -45,12 +46,6 @@ var Add = React.createClass({
       comment: this.state.comment
     });
 
-    this.props.navigator.replace({
-      id: 'dashboard'
-    });
-  },
-
-  onPressCancel: function() {
     this.props.navigator.replace({
       id: 'dashboard'
     });
@@ -119,14 +114,8 @@ var Add = React.createClass({
                      value={this.props.comment} />
         </View>
         <View style={styles.toolbar}>
-          <TouchableHighlight onPress={this.onPressCancel}>
-            <Text style={[styles.textActionShared, styles.textAction]}>
-              Cancel
-            </Text>
-          </TouchableHighlight>
-          <Text style={styles.header}>
-            SKAM
-          </Text>
+          {this.state.menuCancelDashboard}
+          {this.state.menuHeader}
           <TouchableHighlight onPress={this.onPressSave}>
             <Text style={[styles.textActionShared, styles.textActionRight]}>
               Save

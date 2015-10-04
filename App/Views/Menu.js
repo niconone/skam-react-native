@@ -14,21 +14,28 @@ var {
 var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
 var UserActions = require('../Actions/UserActions');
+var Shared = require('../Mixins/Shared');
 
 var styles = require('../Styles/Styles');
 
 var Menu = React.createClass({
-  mixins: [UserStoreSync],
-
-  onCancel: function() {
-    this.props.navigator.replace({
-      id: 'dashboard'
-    });
-  },
+  mixins: [UserStoreSync, Shared],
 
   onAddUser: function() {
     this.props.navigator.replace({
       id: 'contactAdd'
+    });
+  },
+
+  onNetwork: function() {
+    this.props.navigator.replace({
+      id: 'network'
+    });
+  },
+
+  onTrustedNetwork: function() {
+    this.props.navigator.replace({
+      id: 'contacts'
     });
   },
 
@@ -73,6 +80,16 @@ var Menu = React.createClass({
               Add User
             </Text>
           </TouchableHighlight>
+          <TouchableHighlight onPress={this.onTrustedNetwork}>
+            <Text style={[styles.buttonShared, styles.buttonDark]}>
+              Trusted Network
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={this.onNetwork}>
+            <Text style={[styles.buttonShared, styles.buttonDark]}>
+              Recommended Network
+            </Text>
+          </TouchableHighlight>
           <TouchableHighlight onPress={this.onSignout}>
             <Text style={[styles.buttonShared, styles.buttonWarn]}>
               Sign out
@@ -80,14 +97,8 @@ var Menu = React.createClass({
           </TouchableHighlight>
         </View>
         <View style={styles.toolbar}>
-          <TouchableHighlight onPress={this.onCancel}>
-            <Text style={[styles.textActionShared, styles.textAction]}>
-              Cancel
-            </Text>
-          </TouchableHighlight>
-          <Text style={styles.header}>
-            SKAM
-          </Text>
+          {this.state.menuCancelDashboard}
+          {this.state.menuHeader}
           <View>
             <Text style={[styles.textActionShared, styles.textAction]}>
 

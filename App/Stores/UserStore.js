@@ -29,7 +29,7 @@ var store = createStore({
         store.emitChange(action);
         break;
       case UserConstants.PROFILE:
-        _user = Immutable.fromJS(merge(action.response, action.queryParams));
+        _user = Immutable.fromJS(merge(action.response.user, action.queryParams));
         store.emitChange(action);
         break;
       case UserConstants.SIGN_OUT:

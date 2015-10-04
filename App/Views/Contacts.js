@@ -5,7 +5,6 @@ var Image = React.Image;
 var {
   StyleSheet,
   Text,
-  TextInput,
   View,
   Navigator,
   TouchableHighlight,
@@ -13,16 +12,16 @@ var {
   ScrollView
 } = React;
 
-var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserStore = require('../Stores/UserStore');
+var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserActions = require('../Actions/UserActions');
 var Shared = require('../Mixins/Shared');
-var Feed = require('../Mixins/Feed');
+var ContactStoreSync = require('../Mixins/ContactsStoreSync');
 
 var styles = require('../Styles/Styles');
 
 var Dashboard = React.createClass({
-  mixins: [UserStoreSync, Shared, Feed],
+  mixins: [UserStoreSync, Shared, ContactStoreSync],
 
   getInitialState: function() {
     return {
@@ -42,7 +41,7 @@ var Dashboard = React.createClass({
         topInset: 0
       });
 
-      this.refreshFeed();
+      this.refreshContacts();
     }
 
     setTimeout(() => {
@@ -50,12 +49,6 @@ var Dashboard = React.createClass({
         hide: true
       });
     }, 500);
-  },
-
-  onAddNew: function() {
-    this.props.navigator.replace({
-      id: 'postAdd'
-    });
   },
 
   afterUpdateUserFromStore() {
@@ -78,26 +71,79 @@ var Dashboard = React.createClass({
     }
   },
 
+  refreshContacts() {
+    var user = UserStore.getState();
+
+    UserActions.trustedNetwork({
+      id: user.get('id'),
+      apiKey: user.get('apiKey')
+    });
+  },
+
+  showContacts() {
+    if (!this.state.contacts || (this.state.contacts && !this.state.contacts.size)) {
+      return (
+        <View style={styles.postWrapper}>
+          <View style={styles.container}>
+            <Image source={this.state.backgroundSource} style={styles.wallpaper} />
+          </View>
+        </View>
+      );
+    } else {
+      var contactArr = [];
+
+      this.state.contacts.map((contact) => {
+        var avatar;
+
+        if (contact.get('avatar') && contact.get('avatar').get('uri')) {
+          avatar = (
+            <Image source={{uri: contact.get('avatar').get('uri')}} style={styles.avatarPost} />
+          )
+        } else {
+          avatar = (
+            <Image source={require('image!skam-icon')} style={styles.avatarPost} />
+          )
+        }
+
+        contactArr.push(
+          <View key={contact.get('id')}>
+            <View style={styles.postAvatarWrapper}>
+              {avatar}
+              <Text style={styles.username}>{contact.get('name')}</Text>
+            </View>
+          </View>
+        );
+      });
+
+
+      return (
+        <View style={styles.content}>
+          {contactArr}
+        </View>
+      );
+    }
+  },
+
+  componentWillMount: function() {
+    this.refreshContacts();
+  },
+
   render: function() {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.container}>
-          <Image source={require('image!skam-dark')} style={styles.wallpaper} />
+          <Image source={require('image!skam-launch')} style={styles.wallpaper} />
         </View>
         <View style={styles.wrapper}>
-          <ScrollView style={styles.content}
+          <ScrollView style={[styles.content, styles.contacts]}
             onScroll={this.handleScroll}
             scrollEventThrottle={1}
             contentOffset={{y: -this.state.topInset}}>
-            {this.showFeed(true)}
+            {this.showContacts()}
             {this.showRefreshActivity()}
           </ScrollView>
           <View style={styles.toolbar}>
-            <TouchableHighlight onPress={this.onAddNew}>
-              <Text style={[styles.textActionShared, styles.textActionLarge]}>
-                +
-              </Text>
-            </TouchableHighlight>
+            {this.state.menuCancelMenu}
             {this.state.menuHeader}
             {this.state.menuMore}
           </View>

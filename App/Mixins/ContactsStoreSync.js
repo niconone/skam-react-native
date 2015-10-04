@@ -1,23 +1,23 @@
 var ContactStore = require('../Stores/ContactStore');
 
 module.exports = {
-  getInitialState() {
-    return {contact: ContactStore.getState()}
+  getInitialState: function() {
+    return {contacts: ContactStore.getState()}
   },
 
-  updateUserFromStore() {
-    this.setState({contact: ContactStore.getState()});
+  updateContactFromStore: function() {
+    this.setState({contacts: ContactStore.getState()});
     if (this.afterUpdateContactFromStore) {
       this.afterUpdateContactFromStore();
     }
   },
 
-  componentDidMount() {
+  componentDidMount: function() {
     this.updateContactFromStore();
-    ContactsStore.addChangeListener(this.updateContactFromStore);
+    ContactStore.addChangeListener(this.updateContactFromStore);
   },
 
-  componentWillUnmount() {
+  componentWillUnmount: function() {
     ContactStore.removeChangeListener(this.updateContactFromStore);
-  },
+  }
 };

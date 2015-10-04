@@ -1,23 +1,23 @@
 var PostStore = require('../Stores/PostStore');
 
 module.exports = {
-  getInitialState() {
+  getInitialState: function() {
     return {posts: PostStore.getState()}
   },
 
-  updatePostFromStore() {
+  updatePostFromStore: function() {
     this.setState({posts: PostStore.getState()});
     if (this.afterUpdatePostFromStore) {
       this.afterUpdatePostFromStore();
     }
   },
 
-  componentDidMount() {
+  componentDidMount: function() {
     this.updatePostFromStore();
     PostStore.addChangeListener(this.updatePostFromStore);
   },
 
-  componentWillUnmount() {
+  componentWillUnmount: function() {
     PostStore.removeChangeListener(this.updatePostFromStore);
-  },
+  }
 };
