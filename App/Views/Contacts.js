@@ -27,15 +27,14 @@ var Dashboard = React.createClass({
     return {
       topInset: 0,
       backgroundSource: require('image!skam-launch'),
-      hide: true,
-      remove: false
+      hide: true
     };
   },
 
   handleScroll: function(e) {
     var {contentInset, contentOffset} = e.nativeEvent;
 
-    if (contentOffset.y < 0) {
+    if (contentOffset.y < -20) {
       this.setState({
         hide: false,
         topInset: 0
@@ -137,7 +136,7 @@ var Dashboard = React.createClass({
         <View style={styles.wrapper}>
           <ScrollView style={[styles.content, styles.contacts]}
             onScroll={this.handleScroll}
-            scrollEventThrottle={1}
+            scrollEventThrottle={0}
             contentOffset={{y: -this.state.topInset}}>
             {this.showContacts()}
             {this.showRefreshActivity()}

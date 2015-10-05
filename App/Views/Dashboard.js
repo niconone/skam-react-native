@@ -88,7 +88,7 @@ var Dashboard = React.createClass({
         <View style={styles.wrapper}>
           <ScrollView style={styles.content}
             onScroll={this.handleScroll}
-            scrollEventThrottle={1}
+            scrollEventThrottle={0}
             contentOffset={{y: -this.state.topInset}}>
             {this.showFeed(true)}
             {this.showRefreshActivity()}
