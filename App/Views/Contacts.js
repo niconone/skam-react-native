@@ -34,7 +34,7 @@ var Dashboard = React.createClass({
   handleScroll: function(e) {
     var {contentInset, contentOffset} = e.nativeEvent;
 
-    if (contentOffset.y < -20) {
+    if (contentOffset.y < -10) {
       this.setState({
         hide: false,
         topInset: 0
@@ -106,9 +106,9 @@ var Dashboard = React.createClass({
 
         contactArr.push(
           <View key={contact.get('id')}>
-            <View style={styles.postAvatarWrapper}>
+            <View style={[styles.postAvatarWrapper, styles.listing]}>
               {avatar}
-              <Text style={styles.username}>{contact.get('name')}</Text>
+              <Text style={[styles.username, styles.usernameDark]}>{contact.get('name') || '?'}</Text>
             </View>
           </View>
         );

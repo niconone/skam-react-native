@@ -82,10 +82,13 @@ module.exports = {
     fetch(url, postData(params))
       .then(handleResponse(ContactConstants.ADD, params))
       .catch(err => {
+        console.log(err);
+        /*
         AlertIOS.alert(
           'Contact error',
           'Could not add contact'
         );
+        */
       });
   },
 

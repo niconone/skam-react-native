@@ -209,6 +209,9 @@ var styles = StyleSheet.create({
   postAvatarWrapper: {
     flexDirection: 'row',
   },
+  listing: {
+    marginBottom: 2,
+  },
   avatarPost: {
     width: 80,
     height: 80,
@@ -218,8 +221,12 @@ var styles = StyleSheet.create({
     fontSize: 25,
     backgroundColor: 'rgba(15, 255, 156, 0.5)',
     flex: 1,
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingTop: 25,
+  },
+  usernameDark: {
+    color: '#fff',
+    backgroundColor: 'rgba(1, 1, 1, 0.3)',
   },
   contacts: {
     marginTop: 60,

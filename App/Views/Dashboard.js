@@ -37,7 +37,7 @@ var Dashboard = React.createClass({
   handleScroll: function(e) {
     var {contentInset, contentOffset} = e.nativeEvent;
 
-    if (contentOffset.y < 0) {
+    if (contentOffset.y < -10) {
       this.setState({
         hide: false,
         topInset: 0

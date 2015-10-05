@@ -25,11 +25,11 @@ var store = createStore({
 
     switch(action.actionType) {
       case ContactConstants.ADD:
-        _contacts.push(Immutable.fromJS(action.queryParams));
+
         store.emitChange(action);
         break;
       case ContactConstants.NETWORK:
-        _contacts = Immutable.fromJS(action.response.users);
+        _contacts = Immutable.fromJS(action.response);
         store.emitChange(action);
         break;
       case ContactConstants.VOUCH:
