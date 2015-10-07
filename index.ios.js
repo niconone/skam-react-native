@@ -19,6 +19,7 @@ var Profile = require('./App/Views/Profile');
 var ContactAdd = require('./App/Views/ContactAdd');
 var Contacts = require('./App/Views/Contacts');
 var Network = require('./App/Views/Network');
+var UserFeed = require('./App/Views/UserFeed');
 
 StatusBarIOS.setStyle('light-content', true);
 
@@ -49,6 +50,8 @@ var skam = React.createClass({
         return <Contacts navigator={nav} />;
       case 'network':
         return <Network navigator={nav} />;
+      case 'userFeed':
+        return <UserFeed navigator={nav} cid={route.cid} />;
       case 'menu':
         return <Menu navigator={nav} />;
       default:

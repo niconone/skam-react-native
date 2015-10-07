@@ -94,7 +94,6 @@ module.exports = {
 
   trustedNetwork: function(params) {
     var url = mainURL + '/contacts/trustnetwork';
-
     dispatch(ContactConstants.NETWORK, ApiConstants.PENDING, params);
     console.log('getting contacts ', params)
     fetch(url, postData(params))
@@ -118,6 +117,21 @@ module.exports = {
         AlertIOS.alert(
           'Post error',
           'Could not retrieve posts from network'
+        );
+      });
+  },
+
+  userFeed: function(params) {
+    var url = mainURL + '/posts/by';
+
+    dispatch(PostConstants.FEED, ApiConstants.PENDING, params);
+
+    fetch(url, postData(params))
+      .then(handleResponse(PostConstants.FEED))
+      .catch(err => {
+        AlertIOS.alert(
+          'Post error',
+          'Could not retrieve posts from contact'
         );
       });
   },

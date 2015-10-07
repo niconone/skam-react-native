@@ -17,17 +17,19 @@ var UserStoreSync = require('../Mixins/UserStoreSync');
 var UserActions = require('../Actions/UserActions');
 var Shared = require('../Mixins/Shared');
 var ContactStoreSync = require('../Mixins/ContactsStoreSync');
+var Feed = require('../Mixins/Feed');
 
 var styles = require('../Styles/Styles');
 
 var Dashboard = React.createClass({
-  mixins: [UserStoreSync, Shared, ContactStoreSync],
+  mixins: [UserStoreSync, Shared, Feed, ContactStoreSync],
 
   getInitialState: function() {
     return {
       topInset: 0,
       backgroundSource: require('image!skam-launch'),
-      hide: true
+      hide: true,
+      currentContact: false
     };
   },
 
@@ -48,6 +50,15 @@ var Dashboard = React.createClass({
         hide: true
       });
     }, 500);
+  },
+
+  onFeed() {
+    setImmediate(() => {
+      this.props.navigator.replace({
+        id: 'userFeed',
+        cid: this.state.cid
+      });
+    });
   },
 
   afterUpdateUserFromStore() {
@@ -106,14 +117,20 @@ var Dashboard = React.createClass({
 
         contactArr.push(
           <View key={contact.get('id')}>
-            <View style={[styles.postAvatarWrapper, styles.listing]}>
-              {avatar}
-              <Text style={[styles.username, styles.usernameDark]}>{contact.get('name') || '?'}</Text>
-            </View>
+            <TouchableHighlight onPress={() => {
+              this.setState({
+                cid: contact.get('id')
+              });
+              this.onFeed();
+            }}>
+              <View style={[styles.postAvatarWrapper, styles.listing]}>
+                {avatar}
+                <Text style={[styles.username, styles.usernameDark]}>{contact.get('name') || '?'}</Text>
+              </View>
+            </TouchableHighlight>
           </View>
         );
       });
-
 
       return (
         <View style={styles.content}>

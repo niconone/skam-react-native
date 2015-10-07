@@ -29,7 +29,7 @@ var store = createStore({
         store.emitChange(action);
         break;
       case ContactConstants.NETWORK:
-        _contacts = Immutable.fromJS(action.response);
+        _contacts = Immutable.fromJS(action.response.users);
         store.emitChange(action);
         break;
       case ContactConstants.VOUCH:
